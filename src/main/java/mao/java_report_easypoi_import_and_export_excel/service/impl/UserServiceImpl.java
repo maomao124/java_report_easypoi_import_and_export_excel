@@ -1,7 +1,9 @@
 package mao.java_report_easypoi_import_and_export_excel.service.impl;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -13,8 +15,10 @@ import mao.java_report_easypoi_import_and_export_excel.service.UserService;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Service;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Project name(项目名称)：java_report_easypoi_import_and_export_excel
@@ -50,6 +54,29 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             workbook.write(fileOutputStream);
             workbook.close();
             log.info("导出完成");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void importExcel()
+    {
+        log.info("开始导入excel");
+        try (FileInputStream fileInputStream = new FileInputStream("./out.xlsx"))
+        {
+            ImportParams importParams = new ImportParams();
+            //有多少行的标题
+            importParams.setTitleRows(1);
+            //有多少行的头
+            importParams.setHeadRows(1);
+            //导入
+            List<User> userList = ExcelImportUtil.importExcel(fileInputStream, User.class, importParams);
+            //打印
+            userList.forEach(user -> log.info(user.toString()));
+            log.info("导入完成");
         }
         catch (Exception e)
         {

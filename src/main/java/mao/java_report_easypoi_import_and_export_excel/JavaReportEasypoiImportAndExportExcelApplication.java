@@ -14,6 +14,7 @@ public class JavaReportEasypoiImportAndExportExcelApplication
         ConfigurableApplicationContext context = SpringApplication.run(JavaReportEasypoiImportAndExportExcelApplication.class, args);
         UserService userService = context.getBean(UserService.class);
         userService.download();
+        userService.importExcel();
     }
 
 }

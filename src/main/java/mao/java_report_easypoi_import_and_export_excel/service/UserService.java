@@ -22,4 +22,9 @@ public interface UserService extends IService<User>
      * 下载excel
      */
     void download();
+
+    /**
+     * 导入excel
+     */
+    void importExcel();
 }
