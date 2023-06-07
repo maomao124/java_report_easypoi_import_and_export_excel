@@ -27,4 +27,9 @@ public interface UserService extends IService<User>
      * 导入excel
      */
     void importExcel();
+
+    /**
+     * 通过模板导出excel
+     */
+    void downLoadWithTemplate();
 }

@@ -15,6 +15,7 @@ public class JavaReportEasypoiImportAndExportExcelApplication
         UserService userService = context.getBean(UserService.class);
         userService.download();
         userService.importExcel();
+        userService.downLoadWithTemplate();
     }
 
 }

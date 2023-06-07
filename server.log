@@ -1,6 +1,38 @@
-2023-06-06 22:59:31.844  INFO 19364 --- [main] rtEasypoiImportAndExportExcelApplication : Started JavaReportEasypoiImportAndExportExcelApplication in 1.064 seconds (JVM running for 1.513)
-2023-06-06 22:59:31.852  INFO 19364 --- [main] m.j.service.impl.UserServiceImpl         : 开始导出
-2023-06-06 22:59:32.051 DEBUG 19364 --- [main] m.j.m.UserMapper.selectPage_mpCount      : ==>  Preparing: SELECT COUNT(*) AS total FROM user
-2023-06-06 22:59:32.060 DEBUG 19364 --- [main] m.j.m.UserMapper.selectPage_mpCount      : ==> Parameters: 
-2023-06-06 22:59:33.093  INFO 19364 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
-2023-06-06 22:59:33.094  INFO 19364 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-06-07 14:17:11.502  INFO 3200 --- [main] rtEasypoiImportAndExportExcelApplication : Starting JavaReportEasypoiImportAndExportExcelApplication using Java 1.8.0_332 on mao with PID 3200 (D:\程序\大四下期\java_report_easypoi_import_and_export_excel\target\classes started by mao in D:\程序\大四下期\java_report_easypoi_import_and_export_excel)
+2023-06-07 14:17:11.508 DEBUG 3200 --- [main] rtEasypoiImportAndExportExcelApplication : Running with Spring Boot v2.7.1, Spring v5.3.21
+2023-06-07 14:17:11.509  INFO 3200 --- [main] rtEasypoiImportAndExportExcelApplication : No active profile set, falling back to 1 default profile: "default"
+2023-06-07 14:17:12.299  INFO 3200 --- [main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2023-06-07 14:17:12.366  INFO 3200 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2023-06-07 14:17:12.973  INFO 3200 --- [main] rtEasypoiImportAndExportExcelApplication : Started JavaReportEasypoiImportAndExportExcelApplication in 1.714 seconds (JVM running for 2.246)
+2023-06-07 14:17:12.981  INFO 3200 --- [main] m.j.service.impl.UserServiceImpl         : 开始导出
+2023-06-07 14:17:13.216 DEBUG 3200 --- [main] m.j.mapper.UserMapper.selectList         : ==>  Preparing: SELECT id,user_name,phone,hire_date,address FROM user
+2023-06-07 14:17:13.332 DEBUG 3200 --- [main] m.j.mapper.UserMapper.selectList         : ==> Parameters: 
+2023-06-07 14:17:51.066 DEBUG 3200 --- [main] m.j.mapper.UserMapper.selectList         : <==      Total: 5000000
+2023-06-07 14:17:51.072  INFO 3200 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-06-07 14:17:51.074  INFO 3200 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-06-07 14:18:30.685  INFO 28612 --- [main] rtEasypoiImportAndExportExcelApplication : Starting JavaReportEasypoiImportAndExportExcelApplication using Java 1.8.0_332 on mao with PID 28612 (D:\程序\大四下期\java_report_easypoi_import_and_export_excel\target\classes started by mao in D:\程序\大四下期\java_report_easypoi_import_and_export_excel)
+2023-06-07 14:18:30.686 DEBUG 28612 --- [main] rtEasypoiImportAndExportExcelApplication : Running with Spring Boot v2.7.1, Spring v5.3.21
+2023-06-07 14:18:30.686  INFO 28612 --- [main] rtEasypoiImportAndExportExcelApplication : No active profile set, falling back to 1 default profile: "default"
+2023-06-07 14:18:31.057  INFO 28612 --- [main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2023-06-07 14:18:31.109  INFO 28612 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2023-06-07 14:18:31.813  INFO 28612 --- [main] rtEasypoiImportAndExportExcelApplication : Started JavaReportEasypoiImportAndExportExcelApplication in 1.338 seconds (JVM running for 1.826)
+2023-06-07 14:18:31.820  INFO 28612 --- [main] m.j.service.impl.UserServiceImpl         : 开始导出
+2023-06-07 14:18:32.010 DEBUG 28612 --- [main] m.j.mapper.UserMapper.selectById         : ==>  Preparing: SELECT id,user_name,phone,hire_date,address FROM user WHERE id=?
+2023-06-07 14:18:32.025 DEBUG 28612 --- [main] m.j.mapper.UserMapper.selectById         : ==> Parameters: 1(Integer)
+2023-06-07 14:18:36.475 DEBUG 28612 --- [main] m.j.mapper.UserMapper.selectById         : <==      Total: 1
+2023-06-07 14:18:36.724  INFO 28612 --- [main] m.j.service.impl.UserServiceImpl         : 导出完成
+2023-06-07 14:18:36.726  INFO 28612 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-06-07 14:18:36.728  INFO 28612 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2023-06-07 14:20:58.400  INFO 15048 --- [main] rtEasypoiImportAndExportExcelApplication : Starting JavaReportEasypoiImportAndExportExcelApplication using Java 1.8.0_332 on mao with PID 15048 (D:\程序\大四下期\java_report_easypoi_import_and_export_excel\target\classes started by mao in D:\程序\大四下期\java_report_easypoi_import_and_export_excel)
+2023-06-07 14:20:58.402 DEBUG 15048 --- [main] rtEasypoiImportAndExportExcelApplication : Running with Spring Boot v2.7.1, Spring v5.3.21
+2023-06-07 14:20:58.402  INFO 15048 --- [main] rtEasypoiImportAndExportExcelApplication : No active profile set, falling back to 1 default profile: "default"
+2023-06-07 14:20:58.980  INFO 15048 --- [main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2023-06-07 14:20:59.062  INFO 15048 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2023-06-07 14:20:59.579  INFO 15048 --- [main] rtEasypoiImportAndExportExcelApplication : Started JavaReportEasypoiImportAndExportExcelApplication in 1.395 seconds (JVM running for 1.892)
+2023-06-07 14:20:59.586  INFO 15048 --- [main] m.j.service.impl.UserServiceImpl         : 开始导出
+2023-06-07 14:20:59.752 DEBUG 15048 --- [main] m.j.mapper.UserMapper.selectById         : ==>  Preparing: SELECT id,user_name,phone,hire_date,address FROM user WHERE id=?
+2023-06-07 14:20:59.778 DEBUG 15048 --- [main] m.j.mapper.UserMapper.selectById         : ==> Parameters: 1(Integer)
+2023-06-07 14:21:04.054 DEBUG 15048 --- [main] m.j.mapper.UserMapper.selectById         : <==      Total: 1
+2023-06-07 14:21:04.300  INFO 15048 --- [main] m.j.service.impl.UserServiceImpl         : 导出完成
+2023-06-07 14:21:04.301  INFO 15048 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-06-07 14:21:04.303  INFO 15048 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

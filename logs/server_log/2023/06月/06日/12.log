@@ -1,0 +1,6 @@
+2023-06-06 22:59:31.844  INFO 19364 --- [main] rtEasypoiImportAndExportExcelApplication : Started JavaReportEasypoiImportAndExportExcelApplication in 1.064 seconds (JVM running for 1.513)
+2023-06-06 22:59:31.852  INFO 19364 --- [main] m.j.service.impl.UserServiceImpl         : 开始导出
+2023-06-06 22:59:32.051 DEBUG 19364 --- [main] m.j.m.UserMapper.selectPage_mpCount      : ==>  Preparing: SELECT COUNT(*) AS total FROM user
+2023-06-06 22:59:32.060 DEBUG 19364 --- [main] m.j.m.UserMapper.selectPage_mpCount      : ==> Parameters: 
+2023-06-06 22:59:33.093  INFO 19364 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2023-06-06 22:59:33.094  INFO 19364 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
