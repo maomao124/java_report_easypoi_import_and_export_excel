@@ -400,13 +400,13 @@ public class JavaReportEasypoiImportAndExportExcelApplication
 
 
 
-![image-20230606225036317](img/readme/image-20230606225036317.png)
+![image-20230606225036317](img/readme/image-20230606225036317-16861190291611.png)
 
 
 
 
 
-![image-20230606225056458](img/readme/image-20230606225056458.png)
+![image-20230606225056458](img/readme/image-20230606225056458-16861190291623.png)
 
 
 
@@ -592,7 +592,227 @@ public class JavaReportEasypoiImportAndExportExcelApplication
 
 
 
-![image-20230606225843324](img/readme/image-20230606225843324.png)
+![image-20230606225843324](img/readme/image-20230606225843324-16861190291622.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 模板方式导出数据
+
+模板是处理复杂Excel的简单方法，复杂的Excel样式，可以用Excel直接编辑，完美的避开了代码编写样式的雷区，同时指令的支持
+
+模板方式采用的写法是{{}}代表表达式，然后根据表达式里面的数据取值，easypoi不会改变excel原有的样式
+
+
+
+模板如下：
+
+![image-20230607142046094](img/readme/image-20230607142046094.png)
+
+
+
+
+
+```java
+package mao.java_report_easypoi_import_and_export_excel.service;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import mao.java_report_easypoi_import_and_export_excel.entity.User;
+
+/**
+ * Project name(项目名称)：java_report_easypoi_import_and_export_excel
+ * Package(包名): mao.java_report_easypoi_import_and_export_excel.service
+ * Interface(接口名): UserService
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2023/6/6
+ * Time(创建时间)： 22:30
+ * Version(版本): 1.0
+ * Description(描述)： 无
+ */
+
+public interface UserService extends IService<User>
+{
+    /**
+     * 下载excel
+     */
+    void download();
+
+    /**
+     * 导入excel
+     */
+    void importExcel();
+
+    /**
+     * 通过模板导出excel
+     */
+    void downLoadWithTemplate();
+}
+```
+
+
+
+```java
+package mao.java_report_easypoi_import_and_export_excel.service.impl;
+
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.ExcelImportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.afterturn.easypoi.excel.entity.ImportParams;
+import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
+import cn.afterturn.easypoi.excel.entity.enmus.ExcelType;
+import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
+import mao.java_report_easypoi_import_and_export_excel.entity.User;
+import mao.java_report_easypoi_import_and_export_excel.mapper.UserMapper;
+import mao.java_report_easypoi_import_and_export_excel.service.UserService;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
+
+/**
+ * Project name(项目名称)：java_report_easypoi_import_and_export_excel
+ * Package(包名): mao.java_report_easypoi_import_and_export_excel.service.impl
+ * Class(类名): UserServiceImpl
+ * Author(作者）: mao
+ * Author QQ：1296193245
+ * GitHub：https://github.com/maomao124/
+ * Date(创建日期)： 2023/6/6
+ * Time(创建时间)： 22:30
+ * Version(版本): 1.0
+ * Description(描述)： 无
+ */
+
+@Slf4j
+@Service
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService
+{
+
+    @Override
+    public void download()
+    {
+        log.info("开始导出");
+        //只导出前5万条
+        IPage<User> page = new Page<>(0, 50000);
+        List<User> userList = this.page(page).getRecords();
+        //指定导出的格式是高版本的格式
+        ExportParams exportParams = new ExportParams("员工信息", "数据", ExcelType.XSSF);
+        //直接使用EasyPOI提供的方法
+        Workbook workbook = ExcelExportUtil.exportExcel(exportParams, User.class, userList);
+        try (FileOutputStream fileOutputStream = new FileOutputStream("./out.xlsx"))
+        {
+            workbook.write(fileOutputStream);
+            workbook.close();
+            log.info("导出完成");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void importExcel()
+    {
+        log.info("开始导入excel");
+        try (FileInputStream fileInputStream = new FileInputStream("./out.xlsx"))
+        {
+            ImportParams importParams = new ImportParams();
+            //有多少行的标题
+            importParams.setTitleRows(1);
+            //有多少行的头
+            importParams.setHeadRows(1);
+            //导入
+            List<User> userList = ExcelImportUtil.importExcel(fileInputStream, User.class, importParams);
+            //打印
+            userList.forEach(user -> log.info(user.toString()));
+            log.info("导入完成");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void downLoadWithTemplate()
+    {
+        log.info("开始导出");
+
+        try (FileOutputStream fileOutputStream = new FileOutputStream("./out3.xlsx"))
+        {
+            TemplateExportParams params = new TemplateExportParams("./template.xlsx", true);
+
+            User user = this.getById(1);
+            //hutools工具类
+            Map<String, Object> map = BeanUtil.beanToMap(user);
+            //转换
+            Workbook workbook = ExcelExportUtil.exportExcel(params, map);
+            workbook.write(fileOutputStream);
+            workbook.close();
+            log.info("导出完成");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+
+
+```java
+package mao.java_report_easypoi_import_and_export_excel;
+
+import mao.java_report_easypoi_import_and_export_excel.service.UserService;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+@SpringBootApplication
+public class JavaReportEasypoiImportAndExportExcelApplication
+{
+
+    public static void main(String[] args)
+    {
+        ConfigurableApplicationContext context = SpringApplication.run(JavaReportEasypoiImportAndExportExcelApplication.class, args);
+        UserService userService = context.getBean(UserService.class);
+        userService.download();
+        userService.importExcel();
+        userService.downLoadWithTemplate();
+    }
+
+}
+```
+
+
+
+
+
+效果：
+
+![image-20230607142150710](img/readme/image-20230607142150710.png)
 
 
 
